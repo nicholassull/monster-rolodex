@@ -25,6 +25,14 @@ class App extends Component {
       ));
   }
 
+  onSearchChange = (event) => {
+    const searchField = event.target.value.toLowerCase();
+    this.setState(
+      () => {
+        return { searchField };
+      })
+  }
+
   render() {
     console.log('== render ==')
     //Filters through monster list by search value.
@@ -34,13 +42,7 @@ class App extends Component {
       <div className="App">
         {/* onChange handler runs every time the value in the search bar changes */}
         <input className='search-box' type='search' placeholder='search monsters' 
-        onChange={(event) => {
-          const searchField = event.target.value.toLocaleLowerCase();
-          this.setState(
-            () => {
-              return { searchField };
-            })
-        }} 
+        onChange={this.onSearchChange} 
         />
         {
           filteredMonsters.map((monster) => {
