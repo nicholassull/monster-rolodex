@@ -26,23 +26,26 @@ class App extends Component {
   }
 
   onSearchChange = (event) => {
-    const searchField = event.target.value.toLowerCase();
-    this.setState(
-      () => {
-        return { searchField };
-      })
+    const searchField = event.target.value.toLocaleLowerCase();
+    //Shorthand for reasigning values with the same name in state.
+    this.setState({ searchField })
   }
 
   render() {
     console.log('== render ==')
+
+    // Casts the different values and method onto variables for ease of use.
+    const{ monsters, searchField, } = this.state;
+    const { onSearchChange } = this;
+
     //Filters through monster list by search value.
-    const filteredMonsters = this.state.monsters.filter(monster => monster.name.toLowerCase().includes(this.state.searchField));
+    const filteredMonsters = monsters.filter(monster => monster.name.toLocaleLowerCase().includes(searchField));
 
     return (
       <div className="App">
         {/* onChange handler runs every time the value in the search bar changes */}
         <input className='search-box' type='search' placeholder='search monsters' 
-        onChange={this.onSearchChange} 
+        onChange={onSearchChange} 
         />
         {
           filteredMonsters.map((monster) => {
