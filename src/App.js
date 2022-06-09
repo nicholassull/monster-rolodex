@@ -11,17 +11,13 @@ class App extends Component {
       monsters: [],
       searchField: '',
     };
-    console.log('== constructor ==');
   }
   // Use this method for API calls. It runs once component is mounted. 
   componentDidMount() {
-    console.log('== componentDidMount ==')
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then((users) => this.setState(() => {
         return {monsters: users}
-      }, () => {
-        console.log(this.state);
       }
       ));
   }
@@ -33,8 +29,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('== render ==')
-
     // Casts the different values and method onto variables for ease of use.
     const{ monsters, searchField, } = this.state;
     const { onSearchChange } = this;
@@ -48,13 +42,7 @@ class App extends Component {
         <input className='search-box' type='search' placeholder='search monsters' 
         onChange={onSearchChange} 
         />
-
-        {/* {
-          filteredMonsters.map((monster) => {
-            return <div key={monster.id}><h1>{monster.name}</h1></div>
-          })
-        } */}
-        <CardList />
+        <CardList monsters = {filteredMonsters} />
       </div>
     );
   }
