@@ -8,10 +8,11 @@ class App extends Component {
 
     this.state = {
       monsters: [],
+      searchField: '',
     };
     console.log('== constructor ==');
   }
-  // User this method for API calls. It runs once component is mounted. 
+  // Use this method for API calls. It runs once component is mounted. 
   componentDidMount() {
     console.log('== componentDidMount ==')
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -26,19 +27,23 @@ class App extends Component {
 
   render() {
     console.log('== render ==')
+    //Filters through monster list by search value.
+    const filteredMonsters = this.state.monsters.filter(monster => monster.name.toLowerCase().includes(this.state.searchField));
+
     return (
       <div className="App">
         {/* onChange handler runs every time the value in the search bar changes */}
         <input className='search-box' type='search' placeholder='search monsters' 
         onChange={(event) => {
-          const searchString = event.target.value.toLocaleLowerCase();
-          const filteredMonsters = this.state.monsters.filter(monster => monster.name.toLocaleLowerCase().includes(searchString));
-          this.setState(() => {
-            return { monsters: filteredMonsters };
-          })
-        }} />
+          const searchField = event.target.value.toLocaleLowerCase();
+          this.setState(
+            () => {
+              return { searchField };
+            })
+        }} 
+        />
         {
-          this.state.monsters.map((monster) => {
+          filteredMonsters.map((monster) => {
             return <div key={monster.id}><h1>{monster.name}</h1></div>
           })
         }
