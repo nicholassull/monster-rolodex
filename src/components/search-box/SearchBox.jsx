@@ -5,8 +5,11 @@ class SearchBox extends Component {
   render() {
     return (
       // onChange handler runs every time the value in the search bar changes
-      <input className='search-box' type='search' placeholder='search monsters' 
-      onChange={onSearchChange} 
+      <input 
+      type='search'
+      className={this.props.className}
+      placeholder={this.props.placeholder} 
+      onChange={this.props.onChangeHandler} 
       />
     )
   }

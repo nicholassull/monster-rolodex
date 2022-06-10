@@ -2,6 +2,7 @@ import { Component } from 'react';
 import './App.css';
 import { render } from '@testing-library/react';
 import CardList from './components/card-list/CardList';
+import SearchBox from './components/search-box/SearchBox';
 
 class App extends Component {
   constructor() {
@@ -38,9 +39,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        {/* onChange handler runs every time the value in the search bar changes */}
-        <input className='search-box' type='search' placeholder='search monsters' 
-        onChange={onSearchChange} 
+        <SearchBox 
+        className='search-box'
+        onChangeHandler={onSearchChange} placeholder='search monsters'
         />
         <CardList monsters = {filteredMonsters} />
       </div>
