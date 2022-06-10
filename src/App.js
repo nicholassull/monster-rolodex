@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import './App.css';
-import { render } from '@testing-library/react';
 import CardList from './components/card-list/CardList';
 import SearchBox from './components/search-box/SearchBox';
 
