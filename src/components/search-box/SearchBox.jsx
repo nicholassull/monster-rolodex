@@ -1,4 +1,6 @@
 import { Component } from "react";
+import './SearchBox.styles.css';
+
 
 class SearchBox extends Component {
 
@@ -7,7 +9,7 @@ class SearchBox extends Component {
       // onChange handler runs every time the value in the search bar changes
       <input 
       type='search'
-      className={this.props.className}
+      className={`search-box ${this.props.className}`}
       placeholder={this.props.placeholder} 
       onChange={this.props.onChangeHandler} 
       />
