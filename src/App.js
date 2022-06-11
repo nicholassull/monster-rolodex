@@ -5,7 +5,7 @@ import SearchBox from './components/search-box/SearchBox';
 
 //As Functional Component
 const App = () => {
-  
+
   //[value, setValue]...(initialValue)
   const [searchField, setSearchField] = useState('');
   const [monsters, setMonsters] = useState([]);
