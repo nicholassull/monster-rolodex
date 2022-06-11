@@ -1,21 +1,16 @@
 import { Component } from "react";
 import './CardList.styles.css';
 import Card from './../card/Card';
+import { render } from "@testing-library/react";
 
-class CardList extends Component {
-  
-  render() {
-    const { monsters } = this.props;
-
-    return (
-      <div className="card-list">
-        {monsters.map(monster => {
-          return (
-          <Card monster={monster} />
-        )})}
-      </div>
-    )
-  }
+//Destructuring can be done right in the fn argument.
+const CardList = ({ monsters }) => {
+  //Return() is implicit
+  <div className="card-list">
+    {monsters.map(monster => {
+      return <Card monster={monster} />
+    })}
+  </div>
 }
 
 export default CardList;
