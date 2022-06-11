@@ -3,6 +3,7 @@ import './App.css';
 import CardList from './components/card-list/CardList';
 import SearchBox from './components/search-box/SearchBox';
 
+//As Functional Component
 const App = () => {
   
   //[value, setValue]...(initialValue)
@@ -15,7 +16,6 @@ const App = () => {
       .then((response) => response.json())
       .then((users) => setMonsters(users));
   }, [])
-
   //Makes sure that filtered monsters is only ever updated if searchField or monsters changes.
   useEffect(() => {
     const newFilteredMonsters = monsters.filter(monster => monster.name.toLocaleLowerCase().includes(searchField));
