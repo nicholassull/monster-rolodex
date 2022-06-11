@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import CardList from './components/card-list/CardList';
 import SearchBox from './components/search-box/SearchBox';
@@ -8,6 +8,12 @@ const App = () => {
   //[value, setValue]...(initialValue)
   const [searchField, setSearchField] = useState('');
   const [monsters, setMonsters] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((users) => setMonsters(users));
+  }, [])
 
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
