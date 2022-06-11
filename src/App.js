@@ -8,6 +8,7 @@ const App = () => {
   //[value, setValue]...(initialValue)
   const [searchField, setSearchField] = useState('');
   const [monsters, setMonsters] = useState([]);
+  const [filteredMonsters, setFilteredMonsters] = useState(monsters)
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -15,12 +16,16 @@ const App = () => {
       .then((users) => setMonsters(users));
   }, [])
 
+  //Makes sure that filtered monsters is only ever updated if searchField or monsters changes.
+  useEffect(() => {
+    const newFilteredMonsters = monsters.filter(monster => monster.name.toLocaleLowerCase().includes(searchField));
+    setFilteredMonsters(newFilteredMonsters);
+  }, [monsters, searchField]);
+
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldString);
   }
-
-  const filteredMonsters = monsters.filter(monster => monster.name.toLocaleLowerCase().includes(searchField));
 
   return (
     <div className="App">
